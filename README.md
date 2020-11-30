@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ejercicioestilovue
 
 ## Project setup
@@ -22,3 +23,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# randomgifcat
+>>>>>>> bdc7ea94ffdae7ba5f5f7d1c511d77799e4a86e3
