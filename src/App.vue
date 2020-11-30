@@ -2,9 +2,12 @@
   <div id="app" >
     <div class="container">
       <div class="row">
-        <div class="col">
-          <div class="imagen" v-for="(item) in datosApi" :key="item">
-              <img :src="datosApi/mensaje&filter&color&tamaño&tipo" alt="imagen de gatos">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" >
+          <div class="imagen" v-for="(item, index) in datosApi" :key="index" >
+            <p>{{item.id}}</p>
+            <p>{{item.tags}}</p>
+            <p>{{item.gif}} hola</p>
+              <img :src="item.tags.cute" alt="imagen de gatos">
           </div>
         </div>
       </div>
@@ -20,11 +23,12 @@ export default {
   name: 'App',
   data(){
     return {
-      datosApi:'',
+      datosApi: [] ,
       mensaje: {
-        saludo: 'Hola!!',
-        Despedida: 'Chao!!'
+        saludo: 'says/Hola!!?',
+        Despedida: 'says/Chao!!?'
       },
+    
      filter: {
        Sepia: 'filter=sepia',
        Blur: 'filter=blur',
@@ -56,10 +60,11 @@ export default {
   },
   
   created() {
-      fetch ('https://cataas.com/cat/gif/says')
+       fetch ('https://cataas.com/api/cats')
         .then (resp => resp.json())
         .then (result => {
-          this.datosApi = result;
+        this.datosApi = result;
+        console.log(this.datosApi)
         })
         
     }
