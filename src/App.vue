@@ -5,9 +5,9 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" >
           <div class="imagen" v-for="(item, index) in datosApi" :key="index" >
             <p>{{item.id}}</p>
-            <p>{{item.tags}}</p>
+            <p>{{item.tags[1]}}</p>
             <p>{{item.gif}} hola</p>
-              <img :src="item.tags.cute" alt="imagen de gatos">
+              <img src="https://cataas.com/cat"  alt="imagen de gatos">
           </div>
         </div>
       </div>
@@ -25,8 +25,8 @@ export default {
     return {
       datosApi: [] ,
       mensaje: {
-        saludo: 'says/Hola!!?',
-        Despedida: 'says/Chao!!?'
+        saludo: '/says/Hola!!?',
+        Despedida: '/says/Chao!!?'
       },
     
      filter: {
@@ -60,7 +60,7 @@ export default {
   },
   
   created() {
-       fetch ('https://cataas.com/api/cats')
+      fetch ('https://cataas.com/api/cats')
         .then (resp => resp.json())
         .then (result => {
         this.datosApi = result;
