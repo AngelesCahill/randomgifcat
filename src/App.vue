@@ -1,17 +1,53 @@
 <template>
   <div id="app" >
+    
     <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" >
-          <div class="imagen" v-for="(item, index) in datosApi" :key="index" >
-            <p>{{item.id}}</p>
-            <p>{{item.tags[1]}}</p>
-            <p>{{item.gif}} hola</p>
-              <img src="https://cataas.com/cat"  alt="imagen de gatos">
-          </div>
+    <h1 class="text-center my-5">Busca tu Gato</h1>
+    <div class="p-5 bg-light">
+      <form @submit.prevent="solicitarGato">
+        <div class="form-group">
+          <label for="titulo">Titulo: </label>
+          <input type="text" class="form-control" v-model="titulo">
         </div>
-      </div>
+
+        <div class="form-group">
+          <label for="filtro">Filtro: </label>
+          <select class="form-control" v-model="filtro">
+            <option value="blur">Blur</option>
+            <option value="mono">Mono</option>
+            <option value="sepia">Sepia</option>
+            <option value="negative">Negative</option>
+            <option value="paint">Paint</option>
+            <option value="pixel">Pixel</option>
+          </select>
+        </div>
+
+        <div class="form-group bloque">
+          <label for="color">Color: </label>
+          <select class="form-control colores" v-model="color">
+            <option value="red">Rojo</option>
+            <option value="green">Verde</option>
+            <option value="white">Blanco</option>
+            <option value="yellow">Amarillo</option>
+            <option value="blue">Azul</option>
+          </select>
+        </div>
+        <span class="circulo" :style="{backgroundColor : color}"></span>
+
+        <div class="form-group">
+          <label for="tamano">Tamaño: </label>
+          <input type="number" class="form-control" v-model="tamano">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </form>
     </div>
+    <hr>
+    <div class="p-5 bg-light border border-dark w-100" v-if="url">
+      <h3 class="text-center"><em>Tu gato:</em></h3>
+      <img :src="url" alt="gato" class="img-fluid">
+    </div>
+  </div>
     
   </div>
 </template>
@@ -25,7 +61,7 @@ export default {
     return {
       datosApi: [] ,
       mensaje: {
-        saludo: '/says/Hola!!?',
+        saludo: 'says/Hola!!?',
         Despedida: '/says/Chao!!?'
       },
     
@@ -60,7 +96,7 @@ export default {
   },
   
   created() {
-      fetch ('https://cataas.com/api/cats')
+      fetch ('https://cataas.com/api/cat')
         .then (resp => resp.json())
         .then (result => {
         this.datosApi = result;
