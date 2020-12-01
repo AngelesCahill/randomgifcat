@@ -6,7 +6,7 @@
 
 <script>
 
-import Gatos from './Gatos.vue'
+import Gatos from './components/Gatos.vue'
 
 export default {
   name: 'App',
